@@ -1,0 +1,21 @@
+변경할 것.
+vpc 이름
+서브넷 이름
+CIDR
+route table 이름
+
+
+bastion 이름
+bastion ec2 type
+bastion ami
+alb 이름
+
+
+ECS 클러스터 이름
+
+키페어 활성화
+icacls skills-keypair.pem /inheritance:r /deny "*S-1-1-0:(OI)(CI)(F)"
+icacls skills-keypair.pem /grant USER:R
+
+
+endpoint 활성화 해주기
