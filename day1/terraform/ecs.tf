@@ -1,5 +1,9 @@
 resource "aws_ecs_cluster" "cluster" {
   name = "${var.NAME}-cluster"
+  setting {
+    name  = "containerInsights"
+    value = "enabled"
+  }
 
   tags = {
     Name = "${var.NAME}-cluster"
