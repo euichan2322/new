@@ -347,50 +347,50 @@ resource "aws_iam_role_policy" "flowlog" {
 
 
 
-# resource "aws_security_group" "db" {
-#   name        = "${var.NAME}-db-sg"
-#   description = "Allow database traffic"
-#   vpc_id      = aws_vpc.main.id
+resource "aws_security_group" "db" {
+  name        = "${var.NAME}-db-sg"
+  description = "Allow database traffic"
+  vpc_id      = aws_vpc.main.id
 
-#   ingress {
-#     protocol = "tcp"
-#     cidr_blocks = ["0.0.0.0/0"]
-#     from_port = "3306"
-#     to_port = "3306"
-#   }
+  ingress {
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = "3306"
+    to_port = "3306"
+  }
 
-#   egress {
-#     protocol = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#     from_port = "0"
-#     to_port = "0"
-#   }
-
-
-#   lifecycle {
-#     ignore_changes = [
-#       ingress,
-#       egress
-#     ]
-#   }
-
-#   tags = {
-#     Name = "${var.NAME}-db-sg"
-#   }  
-# }
+  egress {
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+    from_port = "0"
+    to_port = "0"
+  }
 
 
-# resource "aws_db_subnet_group" "db" {
-#   name = "${var.NAME}-db-subnet-group"
-#   subnet_ids = [
-#     aws_subnet.protected_a.id,
-#     aws_subnet.protected_b.id,
-#     aws_subnet.protected_c.id
-#   ]
-#     tags = {
-#     Name = "${var.NAME}-db-subnet-group"
-#   }  
-# }
+  lifecycle {
+    ignore_changes = [
+      ingress,
+      egress
+    ]
+  }
+
+  tags = {
+    Name = "${var.NAME}-db-sg"
+  }  
+}
+
+
+resource "aws_db_subnet_group" "db" {
+  name = "${var.NAME}-db-subnet-group"
+  subnet_ids = [
+    aws_subnet.protected_a.id,
+    aws_subnet.protected_b.id,
+    aws_subnet.protected_c.id
+  ]
+    tags = {
+    Name = "${var.NAME}-db-subnet-group"
+  }  
+}
 
 
 # resource "aws_secretsmanager_secret_version" "db" {
